@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { CharacterListComponent } from "../../components/dragoball/character-list/character-list.component";
 import { DragonballCharacterAddComponent } from "../../components/dragoball/character-add/dragonball-character-add.component";
+import { DragonballService } from "../../services/dragonball.services";
 
 interface Character {
   id: number;
@@ -14,8 +20,5 @@ interface Character {
   imports: [CharacterListComponent, DragonballCharacterAddComponent],
 })
 export class DragonballSuperPageComponent {
-  characters = signal<Character[]>([
-    { id: 1, name: "Goku", power: 9001 },
-    { id: 2, name: "Vegueta", power: 8000 },
-  ]);
+  public dragonballService = inject(DragonballService);
 }
